@@ -97,13 +97,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>ACADA Learning Releases Nexus Repository</name>
-	      <url>http://54.163.31.193:4000/repository/tdapp-release/</url>
+	      <url>http://107.20.56.57:8081/repository/Tessy-app-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>ACADA Learning Snapshot Nexus Repository </name>
-	      <url>http://54.163.31.193:4000/repository/tdapp-snapshot/</url>
+	      <url>http://107.20.56.57:8081/repository/Tessy-app-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
