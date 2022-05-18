@@ -1,0 +1,53 @@
+  pipeline{
+    agent any
+    tools{
+      maven "Maven3.8.5"
+    }
+stages{
+  stage('1.GitClone'){
+  steps{
+    sh "echo Github cloning"
+    git 'https://github.com/Tessyoka4/web-app.git'
+  }
+}
+stage('2.MavenBuild'){
+  steps{
+  sh "echo build packages"
+  sh "mvn clean package"
+}
+}
+stage('3.testingtheCode'){
+  steps{
+    sh "mvn sonar:sonar"
+  }
+  }
+stage('4.backupArchitfacts'){
+  steps{
+    sh "mvn deploy"
+  }
+  }
+ stage('5.Deploytostaging'){
+     steps{
+         deploy adapters: [tomcat9(credentialsId: 'Tomcat-Cred', path: '', url: 'http://54.88.51.24:8080')], contextPath: null, war: 'target/*.war'
+     }
+ }
+ stage('6.Approval'){
+    steps{
+    sh "echo Approval Needed"
+    timeout(time:5,unit:'DAYS'){
+      input message:'Approval for Production'
+    }
+  }
+}
+ stage('7.DeploytoProd'){
+     steps{
+         deploy adapters: [tomcat9(credentialsId: 'Tomcat-Cred', path: '', url: 'http://54.88.51.24:8080')], contextPath: null, war: 'target/*.war'
+     }
+ }
+ stage('8.Emailnotification'){
+  steps{
+    emailext body: 'this is a build success', subject: 'Build Success', to: 'theresa.okafor21@gmail.com'
+  }
+ }
+}
+}
