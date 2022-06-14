@@ -103,7 +103,7 @@
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>ACADA Learning Snapshot Nexus Repository </name>
-	      <url>http://172.31.18.235:4000/repository/mtnapp-release/</url>
+	      <url>http://172.31.18.235:4000/repository/mtnapp-snap/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
